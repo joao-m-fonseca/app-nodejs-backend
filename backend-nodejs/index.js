@@ -1,34 +1,21 @@
-const express = require('express')
 const bodyParser = require("body-parser")
 
-const app = express()
+const express = require('express');
+const cors = require('cors');
+const app = express();
+
+app.use(cors());
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const port = 3000
 
-let filmes = [
-    {
-        "title": "Avatar",
-        "year": 2009,
-        "director": "James Cameron"
-    },
-    {
-        "title": "I Am Legend",
-        "year": 2007,
-        "director": "Francis Lawrence"
-    },
-    {
-        "title": "300",
-        "year": 2006,
-        "director": "Zack Snyder"
-    },
-    {
-        "title": "The Avengers",
-        "year": 2012,
-        "director": "Joss Whedon"
-    }
-]
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 let livros = [
     {
